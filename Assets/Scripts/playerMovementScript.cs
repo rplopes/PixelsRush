@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class playerMovementScript : MonoBehaviour {
 
@@ -7,6 +8,7 @@ public class playerMovementScript : MonoBehaviour {
     public float limitRadius;
     private float moveSpeed;
     public int lives;
+    public GameObject panel;
     
 
 	// Use this for initialization
@@ -23,6 +25,9 @@ public class playerMovementScript : MonoBehaviour {
         if( (x*x + y*y) < limitRadius* limitRadius)
         {
             gameObject.transform.position = new Vector3(x, y, 0);
+        }else
+        {
+            gameOver();
         }
 
         /*
@@ -35,9 +40,15 @@ public class playerMovementScript : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "obstacle")
         {
-            lives--;
-            Debug.Log("got hit");
+            gameOver();
         }
+    }
+
+    void gameOver()
+    {
+        moveSpeed = 0;
+        panel.GetComponent<Image>().color = new Color(1f, 0f, 0f, 0.5f);
+        GameObject.Find("Game Master").SendMessage("onPlayerHit");
     }
 
 }

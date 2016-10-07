@@ -24,7 +24,7 @@ public class gameScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		Invoke("SpawnObstacle", spawnRate);
-
+        playing = true;
         // Instantiate circle limits
         for (int i = 0; i < nCircles; i++) {
 			circles[i] = ((GameObject) Instantiate(circleLimitPrefab, new Vector3(0f, 0f, (float) (i * circleDistance)), Quaternion.identity));
@@ -47,12 +47,19 @@ public class gameScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        if(playing)
         timeText.text = ((int)(Time.realtimeSinceStartup % 60)).ToString();
 
 	}
 
     void FixedUpdate()
     {
+    }
+
+    void onPlayerHit()
+    {
+        speed = 0;
+        playing = false;
     }
 
 }

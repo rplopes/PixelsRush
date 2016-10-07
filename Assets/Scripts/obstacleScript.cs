@@ -19,7 +19,7 @@ public class obstacleScript : MonoBehaviour {
             return;
         }
 
-        if (newZ < 3) {
+        if (newZ < 1) {
             gameObject.GetComponent<PolygonCollider2D>().enabled = true;
 		}
 
