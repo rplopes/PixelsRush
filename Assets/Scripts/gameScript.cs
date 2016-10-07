@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class gameScript : MonoBehaviour {
-	public static int nCircles = 6;
+	public static int nCircles = 15;
 	public static int circleDistance = 5;
 
 	public GameObject circleLimitPrefab;
