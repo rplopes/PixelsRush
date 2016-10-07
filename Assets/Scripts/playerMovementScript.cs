@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class playerMovementScript : MonoBehaviour {
 
@@ -19,8 +20,8 @@ public class playerMovementScript : MonoBehaviour {
     }
 	
     void FixedUpdate(){
-        float x = gameObject.transform.position.x + moveSpeed * camera.transform.rotation.y;
-        float y = gameObject.transform.position.y - moveSpeed * camera.transform.rotation.x;
+        float x = gameObject.transform.position.x + moveSpeed * camera.transform.localRotation.y;
+        float y = gameObject.transform.position.y - moveSpeed * camera.transform.localRotation.x;
 
         if( (x*x + y*y) < limitRadius* limitRadius)
         {
@@ -49,6 +50,7 @@ public class playerMovementScript : MonoBehaviour {
         moveSpeed = 0;
         panel.GetComponent<Image>().color = new Color(1f, 0f, 0f, 0.5f);
         GameObject.Find("Game Master").SendMessage("onPlayerHit");
+        SceneManager.LoadScene("menuScene", LoadSceneMode.Single);
     }
 
 }

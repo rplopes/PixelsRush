@@ -48,7 +48,7 @@ public class gameScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(playing)
-        timeText.text = ((int)(Time.realtimeSinceStartup % 60)).ToString();
+            timeText.text = ((int)(Time.timeSinceLevelLoad % 60)).ToString();
 
 	}
 
