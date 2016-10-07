@@ -8,9 +8,11 @@ public class playerMovementScript : MonoBehaviour {
     public float limitRadius;
     private float moveSpeed;
 	private bool alive;
-    public int lives;
+
     public GameObject panel;
     public float timePlaying;
+
+    public AudioSource loseSound;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +20,7 @@ public class playerMovementScript : MonoBehaviour {
         limitRadius = 3.4f;
         moveSpeed = 0;
 		alive = true;
-        lives = 1;
+
         gameObject.transform.position = new Vector3(0f, 0f, 0f);
 
     }
@@ -55,6 +57,7 @@ public class playerMovementScript : MonoBehaviour {
     void gameOver()
     {
         moveSpeed = 0;
+        loseSound.Play();
 		alive = false;
         panel.GetComponent<Image>().color = new Color(1f, 0f, 0f, 0.5f);
 		GameObject.Find("Game Master").SendMessage("onPlayerHit", (int) timePlaying + 1);

@@ -4,6 +4,7 @@ using System.Collections;
 public class obstacleScript : MonoBehaviour {
 
     public GameObject sprite;
+    public AudioSource bowserMiss;
 
     void Start()
     {
@@ -15,6 +16,7 @@ public class obstacleScript : MonoBehaviour {
 
         if (newZ < -1)
         {
+            bowserMiss.Play();
             Destroy(gameObject);
             return;
         }

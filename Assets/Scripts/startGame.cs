@@ -11,16 +11,25 @@ public class startGame : MonoBehaviour {
     public Text highScoreText;
 
     bool gaze;
+    public AudioSource gazeOnSound1;
+    public AudioSource highScoreSound;
+    public AudioSource backgroundSound;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		highscore = getHighScore ();
         if (getIsNewHighScore())
         {
+            if (highscore != 0){
+                highScoreSound.Play();
+            }else
+                backgroundSound.Play();
+
             highScoreText.text = "New High Score! \n" + highscore.ToString();
             highScoreText.color = new Color(1, 1, 0, 1);
         }else
         {
+            backgroundSound.Play();
             highScoreText.text = "High Score \n" + highscore.ToString();
             highScoreText.color = new Color(0, 1, 0, 1);
         }
@@ -42,6 +51,7 @@ public class startGame : MonoBehaviour {
     {
         gaze = true;
         coloring.gameObject.GetComponent<Light>().color = new Color(0, 1, 0, 1);
+        gazeOnSound1.Play();
     }
 
     void gazeOut()
