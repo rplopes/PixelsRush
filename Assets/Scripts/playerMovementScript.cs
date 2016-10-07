@@ -8,6 +8,8 @@ public class playerMovementScript : MonoBehaviour {
     public GameObject camera;
     public float limitRadius;
     private float moveSpeed;
+	private float gameOverTimeout;
+	private bool alive;
     public int lives;
     public GameObject panel;
     public float timePlaying;
@@ -17,6 +19,8 @@ public class playerMovementScript : MonoBehaviour {
         timePlaying = -1;
         limitRadius = 3.4f;
         moveSpeed = 0;
+		gameOverTimeout = 2.5f;
+		alive = true;
         lives = 1;
         gameObject.transform.position = new Vector3(0f, 0f, 0f);
 
@@ -24,43 +28,44 @@ public class playerMovementScript : MonoBehaviour {
 
     void Update()
     {
-        if (timePlaying >= 0)
-            moveSpeed = 2;
-        timePlaying += Time.deltaTime;
+		if (alive) {
+			if (timePlaying >= 0)
+				moveSpeed = 2;
+			timePlaying += Time.deltaTime;
+		}
     }
 	
     void FixedUpdate(){
-        float x = gameObject.transform.position.x + moveSpeed * camera.transform.localRotation.y;
-        float y = gameObject.transform.position.y - moveSpeed * camera.transform.localRotation.x;
+		if (alive) {
+			float x = gameObject.transform.position.x + moveSpeed * camera.transform.localRotation.y;
+			float y = gameObject.transform.position.y - moveSpeed * camera.transform.localRotation.x;
 
-        if( (x*x + y*y) < limitRadius* limitRadius)
-        {
-            gameObject.transform.position = new Vector3(x, y, 0);
-        }else
-        {
-            gameOver();
-        }
-
-        /*
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x + camera.transform.rotation.y,
-                                                    gameObject.transform.position.y - camera.transform.rotation.x,
-                                                    0f);
-                                                    */
+			if ((x * x + y * y) < limitRadius * limitRadius) {
+				gameObject.transform.position = new Vector3 (x, y, 0);
+			} else {
+				gameOver ();
+			}
+		}
     }
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "obstacle")
         {
-            gameOver();
+			gameOver();
         }
     }
 
     void gameOver()
     {
         moveSpeed = 0;
+		alive = false;
         panel.GetComponent<Image>().color = new Color(1f, 0f, 0f, 0.5f);
         GameObject.Find("Game Master").SendMessage("onPlayerHit");
-        SceneManager.LoadScene("menuScene", LoadSceneMode.Single);
+		Invoke("backToMenuScene", gameOverTimeout);
     }
+
+	void backToMenuScene() {
+		SceneManager.LoadScene("menuScene", LoadSceneMode.Single);
+	}
 
 }
