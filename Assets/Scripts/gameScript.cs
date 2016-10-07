@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class gameScript : MonoBehaviour {
+
+    public bool playing;
+
 	public static int nCircles = 10;
 	public static int circleDistance = 8;
 	public static float spawnRate = 0.9f;
@@ -17,13 +20,13 @@ public class gameScript : MonoBehaviour {
     public Text timeText;
 
 	private GameObject[] circles = new GameObject[nCircles];
-
+    
     // Use this for initialization
     void Start () {
 		Invoke("SpawnObstacle", spawnRate);
 
-		// Instantiate circle limits
-		for (int i = 0; i < nCircles; i++) {
+        // Instantiate circle limits
+        for (int i = 0; i < nCircles; i++) {
 			circles[i] = ((GameObject) Instantiate(circleLimitPrefab, new Vector3(0f, 0f, (float) (i * circleDistance)), Quaternion.identity));
 		}
 	}
@@ -32,7 +35,7 @@ public class gameScript : MonoBehaviour {
 
     void SpawnObstacle() {
         double r = Random.value;
-
+        
         if (r < 0.5) {
             Instantiate(deathStarPrefab, new Vector3(Random.insideUnitCircle.x * 2.2f, Random.insideUnitCircle.y * 2.2f, spawnDistance), Quaternion.identity);
         } else {
@@ -45,6 +48,7 @@ public class gameScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timeText.text = ((int)(Time.realtimeSinceStartup % 60)).ToString();
+
 	}
 
     void FixedUpdate()

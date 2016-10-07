@@ -3,16 +3,27 @@ using System.Collections;
 
 public class obstacleScript : MonoBehaviour {
 
+    public GameObject sprite;
+
+    void Start()
+    {
+        sprite.transform.position = new Vector3(sprite.transform.position.x, sprite.transform.position.y,80f);
+    }
+
 	void FixedUpdate () {
-		float newZ = gameObject.transform.position.z - GameObject.Find ("Game Master").GetComponent<gameScript> ().speed;
+		float newZ = sprite.transform.position.z - GameObject.Find ("Game Master").GetComponent<gameScript> ().speed;
 
-		if (newZ < -1) {
-			Destroy (gameObject);
+        if (newZ < -1)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-			return;
+        if (newZ < 3) {
+            gameObject.GetComponent<PolygonCollider2D>().enabled = true;
 		}
 
-		gameObject.transform.position = new Vector3( gameObject.transform.position.x, 
+        sprite.transform.position = new Vector3( gameObject.transform.position.x, 
 			gameObject.transform.position.y, 
 			newZ);
 	}

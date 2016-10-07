@@ -6,11 +6,14 @@ public class playerMovementScript : MonoBehaviour {
     public GameObject camera;
     public float limitRadius;
     private float moveSpeed;
+    public int lives;
+    
 
 	// Use this for initialization
 	void Start () {
         limitRadius = 3.4f;
         moveSpeed = 2;
+        lives = 1;
     }
 	
     void FixedUpdate(){
@@ -28,4 +31,13 @@ public class playerMovementScript : MonoBehaviour {
                                                     0f);
                                                     */
     }
+
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.tag == "obstacle")
+        {
+            lives--;
+            Debug.Log("got hit");
+        }
+    }
+
 }
