@@ -6,10 +6,13 @@ public class startGame : MonoBehaviour {
 
     public GameObject coloring;
     public float lookTime;
+	public int highscore;
     bool gaze;
 
 	// Use this for initialization
 	void Start () {
+		highscore = getHighScore ();
+		Debug.Log (highscore);
         lookTime = 2;
         gaze = false;
 	}
@@ -41,4 +44,8 @@ public class startGame : MonoBehaviour {
     {
         SceneManager.LoadScene("mainScene", LoadSceneMode.Single);
     }
+
+	int getHighScore() {
+		return PlayerPrefs.HasKey ("HighScore") ? PlayerPrefs.GetInt ("HighScore") : 0;
+	}
 }

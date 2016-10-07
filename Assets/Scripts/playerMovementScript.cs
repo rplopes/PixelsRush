@@ -60,7 +60,7 @@ public class playerMovementScript : MonoBehaviour {
         moveSpeed = 0;
 		alive = false;
         panel.GetComponent<Image>().color = new Color(1f, 0f, 0f, 0.5f);
-        GameObject.Find("Game Master").SendMessage("onPlayerHit");
+		GameObject.Find("Game Master").SendMessage("onPlayerHit", (int) timePlaying + 1);
 		Invoke("backToMenuScene", gameOverTimeout);
     }
 

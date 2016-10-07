@@ -48,7 +48,7 @@ public class gameScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(playing)
-            timeText.text = ((int)(Time.timeSinceLevelLoad % 60)).ToString();
+            timeText.text = ((int)Time.timeSinceLevelLoad).ToString();
 
 	}
 
@@ -56,10 +56,15 @@ public class gameScript : MonoBehaviour {
     {
     }
 
-    void onPlayerHit()
+	void onPlayerHit(int newScore)
     {
         speed = 0;
         playing = false;
+
+		if ((PlayerPrefs.HasKey ("HighScore") && PlayerPrefs.GetInt ("HighScore") < newScore)
+			|| !PlayerPrefs.HasKey ("HighScore")) {
+				PlayerPrefs.SetInt ("HighScore", newScore);
+		}
     }
 
 }
