@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class gameScript : MonoBehaviour {
 	public static int nCircles = 10;
@@ -13,6 +14,8 @@ public class gameScript : MonoBehaviour {
 	public GameObject bowserPrefab;
 	public float speed;
 
+    public Text timeText;
+
 	private GameObject[] circles = new GameObject[nCircles];
 
     // Use this for initialization
@@ -25,15 +28,27 @@ public class gameScript : MonoBehaviour {
 		}
 	}
 	
-	void SpawnObstacle () {
-		double r = Random.value;
 
-		if (r < 0.5) {
-			Instantiate (deathStarPrefab, new Vector3 (Random.insideUnitCircle.x * 2.2f, Random.insideUnitCircle.y * 2.2f, spawnDistance), Quaternion.identity);
-		} else {
-			Instantiate (bowserPrefab, new Vector3 (Random.insideUnitCircle.x * 2f, Random.insideUnitCircle.y * 2f, spawnDistance), Quaternion.identity);
-		}
 
-		Invoke("SpawnObstacle", spawnRate);
+    void SpawnObstacle() {
+        double r = Random.value;
+
+        if (r < 0.5) {
+            Instantiate(deathStarPrefab, new Vector3(Random.insideUnitCircle.x * 2.2f, Random.insideUnitCircle.y * 2.2f, spawnDistance), Quaternion.identity);
+        } else {
+            Instantiate(bowserPrefab, new Vector3(Random.insideUnitCircle.x * 2f, Random.insideUnitCircle.y * 2f, spawnDistance), Quaternion.identity);
+        }
+
+        Invoke("SpawnObstacle", spawnRate);
+    }
+
+	// Update is called once per frame
+	void Update () {
+        timeText.text = ((int)(Time.realtimeSinceStartup % 60)).ToString();
 	}
+
+    void FixedUpdate()
+    {
+    }
+
 }
