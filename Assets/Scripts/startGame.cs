@@ -1,17 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class startGame : MonoBehaviour {
 
     public GameObject coloring;
     public float lookTime;
 	public int highscore;
+    public Text highScoreText;
+
     bool gaze;
 
 	// Use this for initialization
 	void Start () {
 		highscore = getHighScore ();
+        if (getIsNewHighScore())
+        {
+            highScoreText.text = "New High Score! \n" + highscore.ToString();
+            highScoreText.color = new Color(1, 1, 0, 1);
+        }else
+        {
+            highScoreText.text = "High Score \n" + highscore.ToString();
+            highScoreText.color = new Color(0, 1, 0, 1);
+        }
 		Debug.Log (highscore);
         lookTime = 2;
         gaze = false;
