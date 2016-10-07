@@ -10,13 +10,23 @@ public class playerMovementScript : MonoBehaviour {
     private float moveSpeed;
     public int lives;
     public GameObject panel;
-    
+    public float timePlaying;
 
 	// Use this for initialization
 	void Start () {
+        timePlaying = -1;
         limitRadius = 3.4f;
-        moveSpeed = 2;
+        moveSpeed = 0;
         lives = 1;
+        gameObject.transform.position = new Vector3(0f, 0f, 0f);
+
+    }
+
+    void Update()
+    {
+        if (timePlaying >= 0)
+            moveSpeed = 2;
+        timePlaying += Time.deltaTime;
     }
 	
     void FixedUpdate(){

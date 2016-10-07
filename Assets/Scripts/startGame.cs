@@ -33,7 +33,8 @@ public class startGame : MonoBehaviour {
     void gazeOut()
     {
         gaze = false;
-        coloring.gameObject.GetComponent<Light>().color = new Color(1, 0, 0, 1);
+        if(coloring.gameObject != null)
+            coloring.gameObject.GetComponent<Light>().color = new Color(1, 0, 0, 1);
     }
 
     void beginGame()
