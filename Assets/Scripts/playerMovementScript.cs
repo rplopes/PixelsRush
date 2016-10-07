@@ -5,16 +5,17 @@ public class playerMovementScript : MonoBehaviour {
 
     public GameObject camera;
     public float limitRadius;
+    private float moveSpeed;
 
 	// Use this for initialization
 	void Start () {
         limitRadius = 3.4f;
-
+        moveSpeed = 2;
     }
 	
     void FixedUpdate(){
-        float x = gameObject.transform.position.x + camera.transform.rotation.y;
-        float y = gameObject.transform.position.y - camera.transform.rotation.x;
+        float x = gameObject.transform.position.x + moveSpeed * camera.transform.rotation.y;
+        float y = gameObject.transform.position.y - moveSpeed * camera.transform.rotation.x;
 
         if( (x*x + y*y) < limitRadius* limitRadius)
         {

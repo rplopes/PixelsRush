@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class gameScript : MonoBehaviour {
-	public static int nCircles = 15;
-	public static int circleDistance = 5;
+	public static int nCircles = 10;
+	public static int circleDistance = 8;
 
 	public GameObject circleLimitPrefab;
 	public float speed;

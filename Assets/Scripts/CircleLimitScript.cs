@@ -2,13 +2,9 @@
 using System.Collections;
 
 public class CircleLimitScript : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	}
+    
 	
-	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		float newZ = gameObject.transform.position.z - GameObject.Find ("Game Master").GetComponent<gameScript> ().speed;
 
 		if (newZ < -1) {
