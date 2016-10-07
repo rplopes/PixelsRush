@@ -24,7 +24,6 @@ public class startGame : MonoBehaviour {
             highScoreText.text = "High Score \n" + highscore.ToString();
             highScoreText.color = new Color(0, 1, 0, 1);
         }
-		Debug.Log (highscore);
         lookTime = 2;
         gaze = false;
 	}

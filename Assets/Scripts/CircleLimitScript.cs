@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CircleLimitScript : MonoBehaviour {
     
-	
+
 	void FixedUpdate () {
 		float newZ = gameObject.transform.position.z - GameObject.Find ("Game Master").GetComponent<gameScript> ().speed;
 
