@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gameScript : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class gameScript : MonoBehaviour {
 	public static float spawnRate = 0.9f;
 
 	private static int spawnDistance = gameScript.nCircles * gameScript.circleDistance;
+	private static float gameOverTimeout = 2.5f;
 
 	public GameObject circleLimitPrefab;
 	public GameObject deathStarPrefab;
@@ -63,8 +65,14 @@ public class gameScript : MonoBehaviour {
 
 		if ((PlayerPrefs.HasKey ("HighScore") && PlayerPrefs.GetInt ("HighScore") < newScore)
 			|| !PlayerPrefs.HasKey ("HighScore")) {
-				PlayerPrefs.SetInt ("HighScore", newScore);
+			PlayerPrefs.SetInt ("HighScore", newScore);
+			PlayerPrefs.SetInt ("IsNewHighScore", 1);
 		}
-    }
+		Invoke("backToMenuScene", gameOverTimeout);
+	}
+
+	void backToMenuScene() {
+		SceneManager.LoadScene("menuScene", LoadSceneMode.Single);
+	}
 
 }

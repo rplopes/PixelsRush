@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class playerMovementScript : MonoBehaviour {
 
     public GameObject camera;
     public float limitRadius;
     private float moveSpeed;
-	private float gameOverTimeout;
 	private bool alive;
     public int lives;
     public GameObject panel;
@@ -19,7 +17,6 @@ public class playerMovementScript : MonoBehaviour {
         timePlaying = -1;
         limitRadius = 3.4f;
         moveSpeed = 0;
-		gameOverTimeout = 2.5f;
 		alive = true;
         lives = 1;
         gameObject.transform.position = new Vector3(0f, 0f, 0f);
@@ -61,11 +58,6 @@ public class playerMovementScript : MonoBehaviour {
 		alive = false;
         panel.GetComponent<Image>().color = new Color(1f, 0f, 0f, 0.5f);
 		GameObject.Find("Game Master").SendMessage("onPlayerHit", (int) timePlaying + 1);
-		Invoke("backToMenuScene", gameOverTimeout);
     }
-
-	void backToMenuScene() {
-		SceneManager.LoadScene("menuScene", LoadSceneMode.Single);
-	}
 
 }

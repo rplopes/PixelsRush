@@ -48,4 +48,12 @@ public class startGame : MonoBehaviour {
 	int getHighScore() {
 		return PlayerPrefs.HasKey ("HighScore") ? PlayerPrefs.GetInt ("HighScore") : 0;
 	}
+
+	bool getIsNewHighScore() {
+		if (PlayerPrefs.HasKey ("IsNewHighScore")) {
+			PlayerPrefs.DeleteKey ("IsNewHighScore");
+			return true;
+		}
+		return false;
+	}
 }
