@@ -2,22 +2,23 @@
 using System.Collections;
 
 public class gameScript : MonoBehaviour {
+	public static int nCircles = 6;
+	public static int circleDistance = 5;
 
-    public GameObject obstaclePrefab;
-    [Range(-.01f,.01f)]
-    public float obstacleSpeedY;
+	public GameObject circleLimitPrefab;
+	public float speed;
 
-    private GameObject obstacles;
+	private GameObject[] circles = new GameObject[nCircles];
 
     // Use this for initialization
     void Start () {
-        obstacles =  (GameObject)Instantiate(obstaclePrefab, new Vector3(0f,0f, 5f), Quaternion.identity);
+		// Instantiate circle limits
+		for (int i = 0; i < nCircles; i++) {
+			circles[i] = ((GameObject) Instantiate(circleLimitPrefab, new Vector3(0f, 0f, (float) (i * circleDistance)), Quaternion.identity));
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        obstacles.transform.position = new Vector3( obstacles.transform.position.x, 
-                                                    obstacles.transform.position.y - obstacleSpeedY, 
-                                                    obstacles.transform.position.z);
 	}
 }
