@@ -51,7 +51,7 @@ public class gameScript : MonoBehaviour {
 		} else if (r < 0.75) {
 			Instantiate (dFossilPrefab, new Vector3 (Random.insideUnitCircle.x * 2.2f, Random.insideUnitCircle.y * 2.2f, spawnDistance), Quaternion.identity);
 		} else {
-			Instantiate (ghostPrefab, new Vector3 (Random.insideUnitCircle.x * 2.2f, Random.insideUnitCircle.y * 2.2f, spawnDistance), Quaternion.identity);
+			Instantiate (ghostPrefab, new Vector3 (Random.insideUnitCircle.x * 2.1f, Random.insideUnitCircle.y * 2.1f, spawnDistance), Quaternion.identity);
 		}
 
         Invoke("SpawnObstacle", spawnRate);
