@@ -29,7 +29,7 @@ public class playerMovementScript : MonoBehaviour {
     {
 		if (alive) {
 			if (timePlaying >= 0)
-				moveSpeed = 2;
+				moveSpeed = 1;
 			timePlaying += Time.deltaTime;
 		}
     }
