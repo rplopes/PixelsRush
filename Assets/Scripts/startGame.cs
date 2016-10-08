@@ -50,15 +50,15 @@ public class startGame : MonoBehaviour {
     void gazeIn()
     {
         gaze = true;
-        coloring.gameObject.GetComponent<Light>().color = new Color(0, 1, 0, 1);
+        GetComponent<Renderer>().material.color = Color.green;
         gazeOnSound1.Play();
     }
 
     void gazeOut()
     {
         gaze = false;
-        if(coloring.gameObject != null)
-            coloring.gameObject.GetComponent<Light>().color = new Color(1, 0, 0, 1);
+        if(gameObject != null)
+            GetComponent<Renderer>().material.color = Color.red;
     }
 
     void beginGame()
