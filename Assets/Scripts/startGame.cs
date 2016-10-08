@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class startGame : MonoBehaviour {
 
-    public GameObject coloring;
+    public bool resetScore;
+
+    public GameObject particleLeft, particleRight;
     public float lookTime;
 	public int highscore;
     public Text highScoreText;
@@ -17,12 +19,19 @@ public class startGame : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        if (resetScore)
+            PlayerPrefs.SetInt("HighScore", 0);
+
 		highscore = getHighScore ();
         if (getIsNewHighScore())
         {
             if (highscore != 0){
                 highScoreSound.Play();
-            }else
+                particleRight.SetActive(true);
+                particleLeft.SetActive(true);
+            }
+            else
                 backgroundSound.Play();
 
             highScoreText.text = "New High Score! \n" + highscore.ToString();
