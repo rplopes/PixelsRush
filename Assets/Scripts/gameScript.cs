@@ -17,6 +17,8 @@ public class gameScript : MonoBehaviour {
 	public GameObject circleLimitPrefab;
 	public GameObject deathStarPrefab;
 	public GameObject bowserPrefab;
+	public GameObject dFossilPrefab;
+	public GameObject ghostPrefab;
 	public float speed;
 	private float spawnRate;
 
@@ -42,11 +44,15 @@ public class gameScript : MonoBehaviour {
     void SpawnObstacle() {
         double r = Random.value;
         
-        if (r < 0.5) {
-            Instantiate(deathStarPrefab, new Vector3(Random.insideUnitCircle.x * 2.2f, Random.insideUnitCircle.y * 2.2f, spawnDistance), Quaternion.identity);
-        } else {
-            Instantiate(bowserPrefab, new Vector3(Random.insideUnitCircle.x * 2f, Random.insideUnitCircle.y * 2f, spawnDistance), Quaternion.identity);
-        }
+		if (r < 0.25) {
+			Instantiate (deathStarPrefab, new Vector3 (Random.insideUnitCircle.x * 2.1f, Random.insideUnitCircle.y * 2.1f, spawnDistance), Quaternion.identity);
+		} else if (r < 0.50) {
+			Instantiate (bowserPrefab, new Vector3 (Random.insideUnitCircle.x * 2f, Random.insideUnitCircle.y * 2f, spawnDistance), Quaternion.identity);
+		} else if (r < 0.75) {
+			Instantiate (dFossilPrefab, new Vector3 (Random.insideUnitCircle.x * 2.2f, Random.insideUnitCircle.y * 2.2f, spawnDistance), Quaternion.identity);
+		} else {
+			Instantiate (ghostPrefab, new Vector3 (Random.insideUnitCircle.x * 2.2f, Random.insideUnitCircle.y * 2.2f, spawnDistance), Quaternion.identity);
+		}
 
         Invoke("SpawnObstacle", spawnRate);
     }
