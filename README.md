@@ -17,7 +17,7 @@ This game will apeal to all the Pixels Camp participants who want to test their 
 Clone this project into a directory of your choice:
 
 ```sh
-$ git clone git@github.com:Erbarbar/PixelsRush.git
+$ git clone git@github.com:rplopes/PixelsRush.git
 ```
 
 Open the new project in [Unity](https://store.unity.com/). You should have the [Android SDK](https://developer.android.com/studio/index.html#downloads) and [Google VR SDK](https://developers.google.com/vr/unity/download) installed.
